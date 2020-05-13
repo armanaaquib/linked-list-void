@@ -10,3 +10,16 @@ List_ptr create_list(void)
 
   return linked_list;
 }
+
+Node_ptr create_node(Element element)
+{
+  Node_ptr node = (Node_ptr)malloc(sizeof(Node));
+
+  if(node)
+  {
+    node->element = element;
+    node->next = NULL;
+  }
+  
+  return node;
+}

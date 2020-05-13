@@ -19,9 +19,9 @@ void pass_message(Message message)
   printf("- %s\n", message);
 }
 
-void assert_node_equal(Node_ptr node_1, Node_ptr node_2, char message[])
+void assert_node_null(Node_ptr node, Message message)
 {
-  if(node_1 == node_2)
+  if(node == NULL)
   {
     NO_OF_PASSING_TEST++;
     pass_message(message);
@@ -32,7 +32,20 @@ void assert_node_equal(Node_ptr node_1, Node_ptr node_2, char message[])
   fail_message(message);
 }
 
-void assert_int_equal(int value_1, int value_2, char mesaage[])
+void assert_element_equal(Element el_1, Element el_2, Message message)
+{
+  if(el_1 == el_2)
+  {
+    NO_OF_PASSING_TEST++;
+    pass_message(message);
+    return;
+  }
+
+  NO_OF_FAILING_TEST++;
+  fail_message(message);
+}
+
+void assert_int_equal(int value_1, int value_2, Message mesaage)
 {
   if(value_1 == value_2)
   {
