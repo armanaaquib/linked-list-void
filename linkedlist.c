@@ -23,3 +23,26 @@ Node_ptr create_node(Element element)
   
   return node;
 }
+
+Status add_to_list(List_ptr linked_list, Element element)
+{
+  Node_ptr node = create_node(element);
+
+  if(!node)
+  {
+    return Failure;
+  }
+
+  Ptr_to_node_ptr ptr_to_set = &linked_list->first;
+
+  if(linked_list->first != NULL)
+  {
+    ptr_to_set = &linked_list->last->next;
+  }
+
+  DEREF ptr_to_set = node;
+  linked_list->last = node;
+  linked_list->length++;
+
+  return Success;
+}

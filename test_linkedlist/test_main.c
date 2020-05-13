@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "test_linkedlist.h"
+#include "test_insertions.h"
 
 void test_create_list(void);
 void test_create_node(void);
@@ -37,6 +38,7 @@ int main(void)
 {
   test_create_list();
   test_create_node();
+  test_add_to_list();
 
   display_tests_status();
 

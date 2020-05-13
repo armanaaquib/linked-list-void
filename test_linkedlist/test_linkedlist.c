@@ -57,3 +57,23 @@ void assert_int_equal(int value_1, int value_2, Message mesaage)
   NO_OF_FAILING_TEST++;
   fail_message(mesaage);
 }
+
+void assert_node_equal(Node_ptr node_1, Node_ptr node_2, Message message)
+{
+  if(node_1 == node_2)
+  {
+    NO_OF_PASSING_TEST++;
+    pass_message(message);
+    return;
+  }
+
+  NO_OF_FAILING_TEST++;
+  fail_message(message);
+}
+
+void assert_linked_list(List_ptr list, Node_ptr first, Node_ptr last, int length)
+{
+  assert_node_equal(list->first, first, "  first");
+  assert_node_equal(list->last, last, "  last");
+  assert_int_equal(list->length, length, "  length");
+}
