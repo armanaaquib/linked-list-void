@@ -180,3 +180,15 @@ Element reduce(List_ptr linked_list, Element init, Reducer reducer)
 
   return result;
 }
+
+void forEach(List_ptr linked_list, ElementProcessor processor)
+{
+  Node_ptr p_walk = linked_list->first;
+
+  while(p_walk != NULL)
+  {
+    (DEREF processor)(p_walk->element);
+    p_walk = p_walk->next;
+  }
+  
+}

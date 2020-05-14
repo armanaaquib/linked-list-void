@@ -4,6 +4,7 @@
 Element square(Element);
 Status is_even(Element);
 Element add(Element, Element);
+void add_1(Element);
 
 void test_map_for_empty_linked_list(void);
 void test_map_for_linked_list(void);
@@ -38,6 +39,11 @@ Element add(Element el_1, Element el_2)
   DEREF (Int_ptr)new_el = num_1 + num_2;
 
   return new_el;
+}
+
+void add_1(Element element)
+{
+  DEREF (Int_ptr)element += 1;
 }
 
 void test_map_for_empty_linked_list(void)
@@ -163,6 +169,30 @@ void test_reverse(void)
   expected_ll = create_list_from_ints(rev_array, 5);
 
   assert_linked_list_deep_equal(actual_ll, expected_ll, is_int_equal, "should reverse linked list");
+
+  printf("\n");
+}
+
+void test_forEach(void)
+{
+  printf("Testing forEach()...\n");
+
+  List_ptr linked_list = create_list();
+
+  forEach(linked_list, add_1);
+  List_ptr expected_ll = create_list();
+
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should forEach work for an empty linked list");
+
+  int int_array[] = {1, 2, -2, 0, 3};
+  linked_list = create_list_from_ints(int_array, 5);
+
+  forEach(linked_list, add_1);
+
+  int rev_array[] = {2, 3, -1, 1, 4};
+  expected_ll = create_list_from_ints(rev_array, 5);
+
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should forEach for a linked list");
 
   printf("\n");
 }

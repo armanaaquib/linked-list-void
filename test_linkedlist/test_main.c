@@ -46,6 +46,7 @@ int main(void)
   test_map();
   test_filter();
   test_reduce();
+  test_forEach();
   
   display_tests_status();
 
