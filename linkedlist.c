@@ -62,3 +62,24 @@ List_ptr map(List_ptr linked_list, Mapper mapper)
 
   return new_linked_list;
 }
+
+List_ptr filter(List_ptr linked_list, Predicate predicate)
+{
+  List_ptr new_linked_list = create_list();
+
+  Node_ptr p_walk = linked_list->first;
+
+  while(p_walk != NULL)
+  {
+    Element el = p_walk->element;
+
+    if((DEREF predicate)(el))
+    {
+      add_to_list(new_linked_list, el);
+    }
+      
+    p_walk = p_walk->next;
+  }
+
+  return new_linked_list;
+}

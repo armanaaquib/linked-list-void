@@ -4,5 +4,6 @@
 #define __TEST_METHODS_H_
 
 void test_map(void);
+void test_filter(void);
 
 #endif
