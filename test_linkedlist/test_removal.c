@@ -28,5 +28,9 @@ void test_remove_from_start(void)
   assert_element_deep_equal(removed_el, exp_removed_el, is_int_equal, "should return start from the single value linked list");
   assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal,"should remove first element of the single value linked list");
 
+  removed_el = remove_from_start(linked_list);
+
+  assert_element_equal(removed_el, NULL, "should return NULL if linked list is empty");
+
   printf("\n");
 }
