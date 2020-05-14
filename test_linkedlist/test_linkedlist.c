@@ -89,13 +89,6 @@ void assert_node_equal(Node_ptr node_1, Node_ptr node_2, Message message)
   fail_message(message);
 }
 
-void assert_linked_list(List_ptr list, Node_ptr first, Node_ptr last, int length)
-{
-  assert_node_equal(list->first, first, "  first");
-  assert_node_equal(list->last, last, "  last");
-  assert_int_equal(list->length, length, "  length");
-}
-
 void assert_linked_list_deep_equal(List_ptr lk_1, List_ptr lk_2, Are_Equal is_element_equal, Message message)
 {
   Status are_equals = Success;

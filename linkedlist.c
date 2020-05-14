@@ -47,6 +47,27 @@ Status add_to_list(List_ptr linked_list, Element element)
   return Success;
 }
 
+Status add_to_start(List_ptr linked_list, Element element)
+{
+  Node_ptr node = create_node(element);
+
+  if(!node)
+  {
+    return Failure;
+  }
+
+  node->next = linked_list->first;
+  linked_list->first = node;
+  linked_list->length++;
+
+  if(linked_list->last == NULL)
+  {
+    linked_list->last = node;
+  }
+
+  return Success;
+}
+
 List_ptr map(List_ptr linked_list, Mapper mapper)
 {
   List_ptr new_linked_list = create_list();
