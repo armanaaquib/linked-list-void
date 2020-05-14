@@ -68,6 +68,52 @@ Status add_to_start(List_ptr linked_list, Element element)
   return Success;
 }
 
+Status insert_at(List_ptr linked_list, Element element, int position)
+{
+  if(position > linked_list->length)
+  {
+    return Failure;
+  }
+
+  Node_ptr node = create_node(element);
+
+  if(!node)
+  {
+    return Failure;
+  }
+
+  Prev_Current_Pair pair;
+  pair.current = linked_list->first;
+  pair.prev = NULL;
+
+  int pos = 0;
+
+  while(pos < position)
+  {
+    pair.prev = pair.current;
+    pair.current = pair.current->next;
+    pos++;
+  }
+
+  Ptr_to_node_ptr ptr_to_set = &linked_list->first;
+
+  if(pair.prev != NULL)
+  {
+    ptr_to_set = &pair.prev->next;
+  }
+
+  DEREF ptr_to_set = node;
+  node->next = pair.current;
+  linked_list->length++;
+
+  if(pair.current == NULL)
+  {
+    linked_list->last = node;
+  }
+
+  return Success;
+}
+
 List_ptr map(List_ptr linked_list, Mapper mapper)
 {
   List_ptr new_linked_list = create_list();

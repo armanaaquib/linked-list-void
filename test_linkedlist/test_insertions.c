@@ -53,3 +53,51 @@ void test_add_to_start(void)
 
   printf("\n");
 }
+
+void test_insert_at(void)
+{
+  printf("testing insert_at()\n");
+
+  List_ptr linked_list = create_list();
+
+  Element element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 10;
+
+  int array_1[] = {10};
+  List_ptr expected = create_list_from_ints(array_1, 1);
+
+  assert_int_equal(insert_at(linked_list, element, 0), Success, "should return Success for inserting at 0 pos for empty linked list");
+  assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should insert at 0 if linked list is empty");
+
+  element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 20;
+
+  int array_2[] = {10, 20};
+  expected = create_list_from_ints(array_2, 2);
+
+  assert_int_equal(insert_at(linked_list, element, 1), Success, "should return Success inserting at end of linked list");
+  assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should insert at end of the linked list");
+
+  element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 15;
+
+  int array_3[] = {10, 15, 20};
+  expected = create_list_from_ints(array_3, 3);
+
+  assert_int_equal(insert_at(linked_list, element, 1), Success, "should return Success inserting in middle of the linked list");
+  assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should insert in middle of the linked list");
+
+  element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 5;
+
+  int array_4[] = {5, 10, 15, 20};
+  expected = create_list_from_ints(array_4, 4);
+
+  assert_int_equal(insert_at(linked_list, element, 0), Success, "should return Success inserting in begining of the linked list");
+  assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should insert in begining of the linked list");
+
+  assert_int_equal(insert_at(linked_list, element, 5), Failure, "should return Failure if pos is out of range");
+  assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should not insert if pos is out of range");
+
+  printf("\n");
+}

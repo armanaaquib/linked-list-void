@@ -41,6 +41,7 @@ int main(void)
   test_create_node();
   test_add_to_list();
   test_add_to_start();
+  test_insert_at();
   test_map();
   test_filter();
   test_reduce();
