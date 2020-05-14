@@ -288,3 +288,34 @@ Element remove_at(List_ptr linked_list, int position)
 
   return removed_el;
 }
+
+int find_position(List_ptr linked_list, Element element, Matcher matcher)
+{
+  Node_ptr p_walk = linked_list->first;
+  int position = 0;
+
+  while(p_walk != NULL)
+  {
+    if((DEREF matcher)(p_walk->element, element))
+    {
+      return position;
+    }
+
+    position++;
+    p_walk = p_walk->next;
+  }
+
+  return -1;
+}
+
+Element remove_first_occurrence(List_ptr linked_list, Element element, Matcher matcher)
+{
+  int position = find_position(linked_list, element, matcher);
+
+  if(position == -1)
+  {
+    return NULL;
+  }
+
+  return remove_at(linked_list, position);
+}

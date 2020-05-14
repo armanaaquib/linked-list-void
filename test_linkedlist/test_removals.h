@@ -6,5 +6,6 @@
 void test_remove_from_start(void);
 void test_remove_from_end(void);
 void test_remove_at(void);
+void test_remove_first_occurrence(void);
 
 #endif

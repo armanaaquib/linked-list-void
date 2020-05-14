@@ -66,6 +66,8 @@ Element remove_from_start(List_ptr); // Returns Element which was removed
 Element remove_from_end(List_ptr);
 Element remove_at(List_ptr, int position);
 
+int find_position(List_ptr, Element, Matcher);
+
 Element remove_first_occurrence(List_ptr, Element element, Matcher matcher);
 List_ptr remove_all_occurrences(List_ptr, Element element, Matcher matcher); // Returns List of removed elements
 

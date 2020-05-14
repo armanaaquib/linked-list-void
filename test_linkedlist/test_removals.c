@@ -135,3 +135,35 @@ void test_remove_at(void)
 
   printf("\n");
 }
+
+void test_remove_first_occurrence(void)
+{
+  printf("testing remove_first_occurrence()\n");
+
+  int array[] = {5, 10, 5, 10};
+  List_ptr linked_list = create_list_from_ints(array, 4);
+
+  Element element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 10;
+
+  Element removed_el = remove_first_occurrence(linked_list, element, is_int_equal);
+
+  int array_1[] = {5, 5, 10};
+  List_ptr expected_ll = create_list_from_ints(array_1, 3);
+
+  Element exp_removed_el = malloc(sizeof(int));
+  DEREF (Int_ptr)exp_removed_el = 10;
+
+  assert_element_deep_equal(removed_el, exp_removed_el, is_int_equal,"should return first occurrance of element");
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should remove first occurrance of element");
+
+  element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 20;
+
+  removed_el = remove_first_occurrence(linked_list, element, is_int_equal);
+
+  assert_element_equal(removed_el, NULL, "should return NULL if element doesn't match");
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should not remove if element doesn't match");
+
+  printf("\n");
+}
