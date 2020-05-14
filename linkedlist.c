@@ -83,3 +83,18 @@ List_ptr filter(List_ptr linked_list, Predicate predicate)
 
   return new_linked_list;
 }
+
+Element reduce(List_ptr linked_list, Element init, Reducer reducer)
+{
+  Element result = init;
+
+  Node_ptr p_walk = linked_list->first;
+
+  while(p_walk != NULL)
+  {
+    result = (DEREF reducer)(result, p_walk->element);
+    p_walk = p_walk->next;
+  }
+
+  return result;
+}

@@ -42,6 +42,7 @@ int main(void)
   test_add_to_list();
   test_map();
   test_filter();
+  test_reduce();
   
   display_tests_status();
 

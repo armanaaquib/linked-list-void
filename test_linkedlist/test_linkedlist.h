@@ -15,6 +15,7 @@ Status is_int_equal(Element, Element);
 
 void assert_node_null(Node_ptr, Message);
 void assert_element_equal(Element, Element, Message);
+void assert_element_deep_equal(Element, Element, Are_Equal, Message);
 void assert_int_equal(int, int, Message);
 void assert_node_equal(Node_ptr, Node_ptr, Message);
 void assert_linked_list(List_ptr, Node_ptr, Node_ptr, int);

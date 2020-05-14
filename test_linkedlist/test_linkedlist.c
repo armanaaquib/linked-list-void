@@ -19,6 +19,11 @@ void pass_message(Message message)
   printf("- %s\n", message);
 }
 
+Status is_int_equal(Element el_1, Element el_2)
+{
+  return DEREF (Int_ptr)el_1 == DEREF (Int_ptr)el_2;
+}
+
 void assert_node_null(Node_ptr node, Message message)
 {
   if(node == NULL)
@@ -35,6 +40,19 @@ void assert_node_null(Node_ptr node, Message message)
 void assert_element_equal(Element el_1, Element el_2, Message message)
 {
   if(el_1 == el_2)
+  {
+    NO_OF_PASSING_TEST++;
+    pass_message(message);
+    return;
+  }
+
+  NO_OF_FAILING_TEST++;
+  fail_message(message);
+}
+
+void assert_element_deep_equal(Element el_1, Element el_2, Are_Equal is_el_equal, Message message)
+{
+  if(is_el_equal(el_1, el_2))
   {
     NO_OF_PASSING_TEST++;
     pass_message(message);
@@ -76,11 +94,6 @@ void assert_linked_list(List_ptr list, Node_ptr first, Node_ptr last, int length
   assert_node_equal(list->first, first, "  first");
   assert_node_equal(list->last, last, "  last");
   assert_int_equal(list->length, length, "  length");
-}
-
-Status is_int_equal(Element el_1, Element el_2)
-{
-  return DEREF (Int_ptr)el_1 == DEREF (Int_ptr)el_2;
 }
 
 void assert_linked_list_deep_equal(List_ptr lk_1, List_ptr lk_2, Are_Equal is_element_equal, Message message)
