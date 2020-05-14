@@ -167,3 +167,39 @@ void test_remove_first_occurrence(void)
 
   printf("\n");
 }
+
+void test_remove_all_occurrences(void)
+{
+  printf("testing remove_all_occurrence()\n");
+
+  int array[] = {5, 10, 5, 10, 20};
+  List_ptr linked_list = create_list_from_ints(array, 5);
+
+  Element element = malloc(sizeof(int));
+  DEREF (Int_ptr)element = 10;
+
+  List_ptr removed_linked_list = remove_all_occurrences(linked_list, element, is_int_equal);
+  
+  int array_1[] = {10, 10};
+  List_ptr expected_ll = create_list_from_ints(array_1, 2);
+
+  assert_linked_list_deep_equal(removed_linked_list, expected_ll, is_int_equal,"should return removed elements linked list");
+
+  int array_2[] = {5, 5, 20};
+  expected_ll = create_list_from_ints(array_2, 3);
+
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should remove all occurrance of element");
+
+  removed_linked_list = remove_all_occurrences(linked_list, element, is_int_equal);
+
+  expected_ll = create_list();
+
+  assert_linked_list_deep_equal(removed_linked_list, expected_ll, is_int_equal, "should return empty liked list if element doesn't match");
+
+  int array_3[] = {5, 5, 20};
+  expected_ll = create_list_from_ints(array_3, 3);
+
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should not remove if element doesn't match");
+
+  printf("\n");
+}

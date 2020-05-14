@@ -319,3 +319,18 @@ Element remove_first_occurrence(List_ptr linked_list, Element element, Matcher m
 
   return remove_at(linked_list, position);
 }
+
+List_ptr remove_all_occurrences(List_ptr linked_list, Element element, Matcher matcher)
+{
+  List_ptr removed_linked_list = create_list();
+
+  Node_ptr removed_element = remove_first_occurrence(linked_list, element, matcher);
+
+  while(removed_element != NULL)
+  {
+    add_to_list(removed_linked_list, removed_element);
+    removed_element = remove_first_occurrence(linked_list, element, matcher);
+  }
+  
+  return removed_linked_list;
+}
