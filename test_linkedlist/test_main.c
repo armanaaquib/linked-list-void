@@ -3,7 +3,7 @@
 #include "test_linkedlist.h"
 #include "test_insertions.h"
 #include "test_methods.h"
-#include "test_removal.h"
+#include "test_removals.h"
 
 void test_create_list(void);
 void test_create_node(void);
@@ -50,6 +50,7 @@ int main(void)
   test_forEach();
   test_remove_from_start();
   test_remove_from_end();
+  test_remove_at();
   
   display_tests_status();
 
