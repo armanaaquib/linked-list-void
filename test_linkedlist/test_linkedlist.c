@@ -77,3 +77,57 @@ void assert_linked_list(List_ptr list, Node_ptr first, Node_ptr last, int length
   assert_node_equal(list->last, last, "  last");
   assert_int_equal(list->length, length, "  length");
 }
+
+Status is_int_equal(Element el_1, Element el_2)
+{
+  return DEREF (Int_ptr)el_1 == DEREF (Int_ptr)el_2;
+}
+
+void assert_linked_list_deep_equal(List_ptr lk_1, List_ptr lk_2, Are_Equal is_element_equal, Message message)
+{
+  Status are_equals = Success;
+  
+  are_equals = are_equals && (lk_1->length == lk_2->length);
+
+  if(!are_equals)
+  {
+    NO_OF_FAILING_TEST++;
+    fail_message(message);
+    return;
+  }
+
+  Node_ptr p_walk_1 = lk_1->first;
+  Node_ptr p_walk_2 = lk_2->first;
+
+  while(p_walk_1 != NULL)
+  {
+    are_equals = are_equals && (DEREF is_element_equal)(p_walk_1->element, p_walk_2->element);
+    p_walk_1 = p_walk_1->next;
+    p_walk_2 = p_walk_2->next;
+  }
+
+  if(are_equals)
+  {
+    NO_OF_PASSING_TEST++;
+    pass_message(message);
+    return;
+  }
+
+  NO_OF_FAILING_TEST++;
+  fail_message(message);
+}
+
+List_ptr create_list_from_ints(Int_ptr array, unsigned length)
+{
+  List_ptr linked_list = create_list();
+
+  for(unsigned i = 0; i < length; i++)
+  {
+    Element el = malloc(sizeof(int));
+    DEREF (Int_ptr)el = array[i];
+
+    add_to_list(linked_list, el);
+  }
+
+  return linked_list;
+}

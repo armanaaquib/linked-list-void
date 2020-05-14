@@ -46,3 +46,19 @@ Status add_to_list(List_ptr linked_list, Element element)
 
   return Success;
 }
+
+List_ptr map(List_ptr linked_list, Mapper mapper)
+{
+  List_ptr new_linked_list = create_list();
+
+  Node_ptr p_walk = linked_list->first;
+
+  while(p_walk != NULL)
+  {
+    Element new_element = (DEREF mapper)(p_walk->element);
+    add_to_list(new_linked_list, new_element);
+    p_walk = p_walk->next;
+  }
+
+  return new_linked_list;
+}
