@@ -70,7 +70,7 @@ Status add_to_start(List_ptr linked_list, Element element)
 
 Status insert_at(List_ptr linked_list, Element element, int position)
 {
-  if(position > linked_list->length)
+  if(position < 0 || position > linked_list->length)
   {
     return Failure;
   }

@@ -99,5 +99,8 @@ void test_insert_at(void)
   assert_int_equal(insert_at(linked_list, element, 5), Failure, "should return Failure if pos is out of range");
   assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should not insert if pos is out of range");
 
+  assert_int_equal(insert_at(linked_list, element, -1), Failure, "should return Failure if pos is negative");
+  assert_linked_list_deep_equal(linked_list, expected, is_int_equal, "should not insert if pos is negative");
+
   printf("\n");
 }
