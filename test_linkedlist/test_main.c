@@ -49,6 +49,7 @@ int main(void)
   test_reduce();
   test_forEach();
   test_remove_from_start();
+  test_remove_from_end();
   
   display_tests_status();
 

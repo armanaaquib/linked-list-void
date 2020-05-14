@@ -213,3 +213,37 @@ Element remove_from_start(List_ptr linked_list)
 
   return removed_el;
 }
+
+Element remove_from_end(List_ptr linked_list) 
+{
+  if(linked_list->last == NULL)
+  {
+    return NULL;
+  }
+
+  Prev_Current_Pair pair;
+  pair.current = linked_list->first;
+  pair.prev = NULL;
+
+  while(pair.current != linked_list->last)
+  {
+    pair.prev = pair.current;
+    pair.current = pair.current->next;
+  }
+
+  Ptr_to_node_ptr ptr_to_set = &linked_list->first;
+
+  if(pair.prev != NULL)
+  {
+    ptr_to_set = &pair.prev->next;
+  }
+  
+  Element removed_el = pair.current->element;
+  free(pair.current);
+
+  DEREF ptr_to_set = NULL;
+  linked_list->last = pair.prev;
+  linked_list->length--;
+
+  return removed_el;
+}
