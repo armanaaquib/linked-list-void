@@ -334,3 +334,13 @@ List_ptr remove_all_occurrences(List_ptr linked_list, Element element, Matcher m
   
   return removed_linked_list;
 }
+
+Status add_unique(List_ptr linked_list, Element element, Matcher matcher)
+{
+  if(find_position(linked_list, element, matcher) != -1)
+  {
+    return Failure;
+  }
+
+  return add_to_list(linked_list, element);
+}

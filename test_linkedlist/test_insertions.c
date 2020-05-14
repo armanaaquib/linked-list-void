@@ -104,3 +104,29 @@ void test_insert_at(void)
 
   printf("\n");
 }
+
+void test_add_unique(void)
+{
+  printf("testing add_unique()\n");
+
+  int array[] = {5, 10, 20};
+  List_ptr linked_list = create_list_from_ints(array, 3);
+
+  Element element = malloc(sizeof(int));
+  
+  DEREF (Int_ptr)element = 10;
+  assert_int_equal(add_unique(linked_list, element, is_int_equal), Failure, "should return failure if element is already present");
+
+  List_ptr expected_ll = create_list_from_ints(array, 3);
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should not add if element is already present");
+
+  DEREF (Int_ptr)element = 15;
+  assert_int_equal(add_unique(linked_list, element, is_int_equal), Success, "should add if value is not present in the list");
+
+  int array_1[] = {5, 10, 20, 15};
+  expected_ll = create_list_from_ints(array_1, 4);
+
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should add to list if element is not present in the linked list");
+
+  printf("\n");
+}

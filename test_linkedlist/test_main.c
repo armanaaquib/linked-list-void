@@ -53,6 +53,7 @@ int main(void)
   test_remove_at();
   test_remove_first_occurrence();
   test_remove_all_occurrences();
+  test_add_unique();
   
   display_tests_status();
 
