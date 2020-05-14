@@ -142,3 +142,27 @@ void test_reduce(void)
 
   printf("\n");
 }
+
+void test_reverse(void)
+{
+  printf("Testing reverse()...\n");
+
+  List_ptr linked_list = create_list();
+
+  List_ptr actual_ll = reverse(linked_list);
+  List_ptr expected_ll = create_list();
+
+  assert_linked_list_deep_equal(actual_ll, expected_ll, is_int_equal, "should reverse an empty linked list");
+
+  int int_array[] = {1, 2, -2, 0, 3};
+  linked_list = create_list_from_ints(int_array, 5);
+
+  actual_ll = reverse(linked_list);
+
+  int rev_array[] = {3, 0, -2, 2, 1};
+  expected_ll = create_list_from_ints(rev_array, 5);
+
+  assert_linked_list_deep_equal(actual_ll, expected_ll, is_int_equal, "should reverse linked list");
+
+  printf("\n");
+}

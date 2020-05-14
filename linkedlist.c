@@ -114,6 +114,21 @@ Status insert_at(List_ptr linked_list, Element element, int position)
   return Success;
 }
 
+List_ptr reverse(List_ptr linked_list)
+{
+  List_ptr rev_linked_list = create_list();
+
+  Node_ptr p_walk = linked_list->first;
+
+  while(p_walk != NULL)
+  {
+    add_to_start(rev_linked_list, p_walk->element);
+    p_walk = p_walk->next;
+  }
+
+  return rev_linked_list;
+}
+
 List_ptr map(List_ptr linked_list, Mapper mapper)
 {
   List_ptr new_linked_list = create_list();

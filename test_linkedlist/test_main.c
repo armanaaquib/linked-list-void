@@ -42,6 +42,7 @@ int main(void)
   test_add_to_list();
   test_add_to_start();
   test_insert_at();
+  test_reverse();
   test_map();
   test_filter();
   test_reduce();
