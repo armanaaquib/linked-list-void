@@ -344,3 +344,14 @@ Status add_unique(List_ptr linked_list, Element element, Matcher matcher)
 
   return add_to_list(linked_list, element);
 }
+
+Status clear_list(List_ptr linked_list)
+{ 
+  while(linked_list->first != NULL)
+  {
+    Element element = remove_from_start(linked_list);
+    free(element);
+  }
+
+  return Success;
+}

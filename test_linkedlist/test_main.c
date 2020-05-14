@@ -7,6 +7,7 @@
 
 void test_create_list(void);
 void test_create_node(void);
+void test_clear_list(void);
 
 void test_create_list(void)
 {
@@ -35,6 +36,21 @@ void test_create_node(void)
   printf("\n");
 }
 
+void test_clear_list(void)
+{
+  printf("testing clear_list()\n");
+
+  int array[] = {5, 10, 15};
+  List_ptr linked_list = create_list_from_ints(array, 3);
+
+  assert_int_equal(clear_list(linked_list), Success, "should return Success after clearing the list");
+
+  List_ptr expected_ll = create_list();
+  assert_linked_list_deep_equal(linked_list, expected_ll, is_int_equal, "should linked list become empty");
+
+  printf("\n");
+}
+
 
 int main(void)
 {
@@ -54,6 +70,7 @@ int main(void)
   test_remove_first_occurrence();
   test_remove_all_occurrences();
   test_add_unique();
+  test_clear_list();
   
   display_tests_status();
 
