@@ -190,5 +190,26 @@ void forEach(List_ptr linked_list, ElementProcessor processor)
     (DEREF processor)(p_walk->element);
     p_walk = p_walk->next;
   }
-  
+}
+
+Element remove_from_start(List_ptr linked_list)
+{
+  if(linked_list->first == NULL)
+  {
+    return NULL;
+  }
+
+  Node_ptr node_to_remove = linked_list->first;
+  linked_list->first = node_to_remove->next;
+  linked_list->length--;
+
+  Element removed_el = node_to_remove->element;
+  free(node_to_remove);
+
+  if(linked_list->first == NULL)
+  {
+    linked_list->last = NULL;
+  }
+
+  return removed_el;
 }
